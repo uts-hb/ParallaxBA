@@ -1,11 +1,12 @@
 
-function [PVector,Reason,Info,Sum_Error, Errors] = FuncLeastSquares(xVector,PVector,Feature,K,FixVa)
+function [PVector,Reason,Info,Sum_Error, Errors, reprojectionErrors_initial] = FuncLeastSquares(xVector,PVector,Feature,K,FixVa)
 Errors = {}; 
 %Initial Error
 nRowNum = length(xVector.PID);
 [Error, Sum_Error,reprojectionErrors,Errors]= FuncDiff(xVector,PVector,Feature,K,Errors);
 Sum_Error = Sum_Error/nRowNum;
 fprintf('Initial Error is %.8f\n', Sum_Error);
+reprojectionErrors_initial = Sum_Error;
 Sum_Delta = 22;
 MaxIter = 30;
 MinError = 1e-8;
