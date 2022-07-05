@@ -198,7 +198,7 @@ plot3(GT_P0(:,4),GT_P0(:,5),GT_P0(:,6),'-+r');
 
 Pose = [];
 for i = 1 : size(refinedPoses,1)
-    Pose(i,:) = [me_InvRotMatrixYPR22(refinedPoses.AbsolutePose(i,1).Rotation), refinedPoses.AbsolutePose(i,1).Translation ];
+    Pose(i,:) = [v_InvRotMatrixYPR22(refinedPoses.AbsolutePose(i,1).Rotation), refinedPoses.AbsolutePose(i,1).Translation ];
 end
 
 hold on;
