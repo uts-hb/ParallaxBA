@@ -7,4 +7,4 @@ For the comparison between the two BA methods, the "MALAGA PARKING-6L" and "Star
 
 To compare two BA with "MALAGA PARKING-6L" and "Starry Night" datasets in MATLAB, 'Malaga_BundleAdjustment.m' and 'Starry_BundleAdjustment.m' can be executed, respectively.
 
-In the case of the "Starry Might" dataset, the type of data can be changed between the data with 80 features and 500 features. The type of initial value and the number of images also can be chosen to run MATLAB for both BAs.
+In the case of the "Starry Might" dataset, the type of data can be changed between the data with 80 features and 500 features. The type of initial value and the number of images also can be chosen to run MATLAB with different initial inputs. 
