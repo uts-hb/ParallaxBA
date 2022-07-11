@@ -9,3 +9,11 @@ To compare two BA with "MALAGA PARKING-6L" and "Starry Night" datasets in MATLAB
 
 In the case of the "Starry Might" dataset, the type of data can be changed between the data with 80 features and 500 features. 
 The type of initial value and the number of images also can be chosen to run MATLAB for both BAs.
+
+
+@INPROCEEDINGS{Clement2015CRV,
+  author = {Lee Clement and Valentin Peretroukhin and Jacob Lambert and Jonathan Kelly},
+  title = {The Battle for Filter Supremacy: A Comparative Study of the Multi-State Constraint Kalman Filter and the Sliding Window Filter},
+  booktitle = {Conference on Computer and Robot Vision (CRV)},
+  year = {2015}
+}
