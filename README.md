@@ -3,7 +3,7 @@
 This is the MATLAB code comparing Standard Bundle Adjustment(SBA) and Parallax Bundle Adjustment(PBA). 
 
 SBA MATLAB function from the Computer Vision toolbox is used, and PBA MATLAB is implemented by ourselves. 
-For the comparison between the two BA methods, the "MALAGA PARKING-6L" and "Starry Night" datasets are used.
+For the comparison between the two BA methods, the "MALAGA PARKING-6L"[1] and "Starry Night" [2] datasets are used.
 
 To compare two BA with "MALAGA PARKING-6L" and "Starry Night" datasets in MATLAB, 'Malaga_BundleAdjustment.m' and 'Starry_BundleAdjustment.m' can be executed, respectively.
 
@@ -11,9 +11,5 @@ In the case of the "Starry Might" dataset, the type of data can be changed betwe
 The type of initial value and the number of images also can be chosen to run MATLAB for both BAs.
 
 
-@INPROCEEDINGS{Clement2015CRV,
-  author = {Lee Clement and Valentin Peretroukhin and Jacob Lambert and Jonathan Kelly},
-  title = {The Battle for Filter Supremacy: A Comparative Study of the Multi-State Constraint Kalman Filter and the Sliding Window Filter},
-  booktitle = {Conference on Computer and Robot Vision (CRV)},
-  year = {2015}
-}
+[1] L. Zhao, S. Huang, L. Yan, J. J. Wang, G. Hu, and G. Dissanayake, “Large-scale monocular SLAM by local bundle adjustment and map joining”, in 2010 11th International Conference on Control Automation Robotics Vision, 7-10 Dec. 2010 2010, pp. 431-436, doi: 10.1109/ICARCV.2010.5707820..
+[2] L. E. Clement, V. Peretroukhin, J. Lambert, and J. Kelly, “The Battle for Filter Supremacy: A Comparative Study of the Multi-State Constraint Kalman Filter and the Sliding Window Filter”, 2015 12th Conference on Computer and Robot Vision, 3-5 June 2015, pp. 23-30, doi: 10.1109/CRV.2015.11.
