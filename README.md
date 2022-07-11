@@ -1,6 +1,7 @@
 # ParallaxBA
 
 This is the MATLAB code comparing Standard Bundle Adjustment(SBA) and Parallax Bundle Adjustment(PBA). 
+
 SBA MATLAB function from the Computer Vision toolbox is used, and PBA MATLAB is implemented by ourselves. 
 For the comparison between the above two BA methods, the "MALAGA PARKING-6L" and "Starry Night" datasets are used.
 
