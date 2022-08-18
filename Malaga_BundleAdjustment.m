@@ -76,7 +76,9 @@ PVector.Info = Info;
 
 %% plotting the result of Parallax BA
 Pose = reshape(PVector.Pose,6,[])';
+Pose(:,4:6) = Pose(:,4:6)*GT_P0(2,6);
 % FeaturePos = reshape(PVector.Feature,3,[])';
+
 
 figure('Name','Parallax BA');
 plot3(GT_P0(:,4),GT_P0(:,5),GT_P0(:,6),'-+r');
