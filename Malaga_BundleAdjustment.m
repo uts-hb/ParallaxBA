@@ -58,11 +58,13 @@ FixVa = 3; % Fix Z
 % PVector.Pose(10,1) = 1;
 
 tic;
-% Least Squares
-[PVector,Reason,Info,Sum_Error, Errors_par, reprojectionErrors_PBA_initial] = FuncLeastSquares(xVector,PVector,Feature,K,FixVa);
-%
-%% Levenberg-Marquardt Iteration SBA
-% [PVector,Reason,Info] = FuncLeastSquaresLMSBA(xVector,PVector,Feature,K,FixVa);
+if ImageNum == 170
+    %% Levenberg-Marquardt Iteration SBA
+    [PVector,Reason,Info] = FuncLeastSquaresLMSBA(xVector,PVector,Feature,K,FixVa);
+else 
+    %% Least Squares
+    [PVector,Reason,Info,Sum_Error, Errors_par, reprojectionErrors_PBA_initial] = FuncLeastSquares(xVector,PVector,Feature,K,FixVa);
+end
 
 output_PVector = PVector; 
 BATime = toc;
