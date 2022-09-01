@@ -39,12 +39,14 @@ input_PVector = PVector;
 %% Deleting the Feature only observed once 
 Feature = Feature(find(Feature(:,1) ~=0),:);
 input_Feature = Feature; 
-delete_Id = find(Feature(:,4) ==0); 
-Feature = Feature(1:delete_Id(1)-1,:);
-PVector.Feature = PVector.Feature(1:3*(delete_Id(1)-1)); 
-xVector.PID = xVector.PID(1:length(xVector.PID)- length(delete_Id),:); 
-xVector.FID = xVector.FID(1:end-length(delete_Id),:); 
-xVector.u = xVector.u(1:end-2*length(delete_Id),:); 
+delete_Id = find(Feature(:,4) ==0);
+if ~isempty(delete_Id)
+    Feature = Feature(1:delete_Id(1)-1,:);
+    PVector.Feature = PVector.Feature(1:3*(delete_Id(1)-1)); 
+    xVector.PID = xVector.PID(1:length(xVector.PID)- length(delete_Id),:); 
+    xVector.FID = xVector.FID(1:end-length(delete_Id),:); 
+    xVector.u = xVector.u(1:end-2*length(delete_Id),:); 
+end
 
 %% Choose Variavle to Fix
 % FixVa = 4;
