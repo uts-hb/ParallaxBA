@@ -20,7 +20,7 @@ input_value = 'Initialization_5';
 
 
 %% Number of Image (1~500)
-ImageNum =20;
+ImageNum =100;
 
 %% Intrinsic matrix for "Starry Night" dataset
 K = textread('calSBA_starry.txt');
@@ -104,23 +104,26 @@ fprintf('Time Use %d\n\n', BATime);
 
 %% plotting the result of Parallax BA
 Pose = reshape(PVector.Pose,6,[])';
-Pose_ = Pose; 
-Pose_(:,4:6) = Pose_(:,4:6) - Pose_(1,4:6);
+temp_Pose = Pose; 
+temp_GT = GT_P0; 
+
+temp_Pose(:,4:6) = temp_Pose(:,4:6) - temp_Pose(1,4:6);
+temp_GT(:,4:6) = temp_GT(:,4:6) - temp_GT(1,4:6);
+
 if ImageNum > 9
-    Pose_(:,4:6) = (Pose_(:,4:6)/Pose(10,6))*GT_P0(10,6);
+    temp_Pose(:,4:6) = (temp_Pose(:,4:6)/temp_Pose(10,6))*temp_GT(10,6);
 else
-    Pose(:,4:6) = (Pose(:,4:6)/Pose(10,6))*GT_P0(10,6);
+    temp_Pose(:,4:6) = (temp_Pose(:,4:6)/temp_Pose(5,6))*temp_GT(5,6);
 end
-Pose_(:,4:6) = Pose_(:,4:6) + Pose_(1,4:6);
 
 FeaturePos = reshape(PVector.Feature,3,[])';
 
 figure('Name','Parallax BA');
-plot3(GT_P0(:,4),GT_P0(:,5),GT_P0(:,6),'-+r');
+plot3(temp_GT(:,4),temp_GT(:,5),temp_GT(:,6),'-+r');
 axis equal;
 hold on;
 grid on;
-plot3(Pose(:,4),Pose(:,5),Pose(:,6),'-*g');
+plot3(temp_Pose(:,4),temp_Pose(:,5),temp_Pose(:,6),'-*g');
 axis equal;
 
 
@@ -128,16 +131,14 @@ axis equal;
 refined_feat_pos = FuncCalFeatPos(feat_ob, PVector, Feature);
 RMSE_feat_parallax = sqrt(mean(true_feat' - refined_feat_pos').^2);
 ARMSE_feat_parallax = mean(RMSE_feat_parallax(1,:));
-RMSE_pose_parallax = sqrt(mean(GT_P0-Pose).^2);
+RMSE_pose_parallax = sqrt(mean(temp_GT-temp_Pose).^2);
 ARMSE_rotation_parallax = mean(RMSE_pose_parallax(1,1:3));
 ARMSE_position_parallax =  mean(RMSE_pose_parallax(1,4:6));
 reprojectionErrors_PBA_final= (Errors_par{end}'*Errors_par{end})/(size(Errors_par{end},1)/2);
 
-
 %% ==============================Standard BA============================ %%
-
 %% Converting data suitable for Standard BA MATLAB 
-data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose);
+data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose, temp_Pose);
 
 
 
