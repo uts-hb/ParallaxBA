@@ -1,4 +1,4 @@
-function data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose, temp_Pose)
+function data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose)
 
 data.intrinsics = cameraIntrinsics([camera.f_u, camera.f_v],[camera.c_u, camera.c_v],[640,480]);
 
@@ -17,7 +17,6 @@ for i = 1:length(state.camState)
         elseif strcmp(input_value, 'Estimated')
             AbsolutePose = [AbsolutePose;rigid3d((quatToRotMat(state.camState{1,i}.q_C_G)),state.camState{1,i}.p_C_G')];
         elseif strcmp(input_value, 'Initialization_5')
-            Pose(:,4:6) = temp_Pose(:,4:6) + Pose(1,4:6);
             AbsolutePose = [AbsolutePose;rigid3d(RMatrixYPR22(Pose(i,1),Pose(i,2),Pose(i,3)), Pose(i,4:6))];
             
         end
