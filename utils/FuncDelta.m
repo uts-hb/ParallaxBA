@@ -85,10 +85,10 @@ elseif FixVa==1;%% Fix X
 elseif FixVa==4; 
 %     DeltaP = [zeros(6,1);DeltaP(1:142);0;DeltaP(143:nRowNumP-7)];   %
 %     First Z = 0.8770 Twenty-five Z = 0.4559
-    DeltaP = [zeros(6,1);DeltaP(1:52);0;DeltaP(53:nRowNumP-7)];    % First Z = 0.8770  4th Z = 0.7970
+    DeltaP = [zeros(6,1);DeltaP(1:53);0;DeltaP(54:nRowNumP-7)];    % First Z = 0.8770  4th Z = 0.7970
 %         DeltaP = [zeros(6,1);DeltaP(1:22);0;DeltaP(23:nRowNumP-7)];    % First Z = 0.8770  4th Z = 0.7970
 elseif FixVa==5; 
-        DeltaP = [zeros(6,1);DeltaP(1:22);0;DeltaP(23:nRowNumP-7)];    % First Z = 0.8770  4th Z = 0.7970
+        DeltaP = [zeros(6,1);DeltaP(1:23);0;DeltaP(24:nRowNumP-7)];    % First Z = 0.8770  4th Z = 0.7970
 end;
 %%
 DeltaF = V*(EF-W'*DeltaP);
