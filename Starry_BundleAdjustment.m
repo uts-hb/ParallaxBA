@@ -128,7 +128,7 @@ axis equal;
 refined_feat_pos = FuncCalFeatPos(feat_ob, PVector, Feature);
 RMSE_feat_parallax = sqrt(mean(true_feat' - refined_feat_pos').^2);
 ARMSE_feat_parallax = mean(RMSE_feat_parallax(1,:));
-RMSE_pose_parallax = sqrt(mean(GT_P0-Pose).^2);
+RMSE_pose_parallax = sqrt(mean(GT_P0_-Pose).^2);
 ARMSE_rotation_parallax = mean(RMSE_pose_parallax(1,1:3));
 ARMSE_position_parallax =  mean(RMSE_pose_parallax(1,4:6));
 reprojectionErrors_PBA_final= (Errors_par{end}'*Errors_par{end})/(size(Errors_par{end},1)/2);
