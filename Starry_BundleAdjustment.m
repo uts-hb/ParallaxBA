@@ -138,7 +138,7 @@ reprojectionErrors_PBA_final= (Errors_par{end}'*Errors_par{end})/(size(Errors_pa
 
 %% ==============================Standard BA============================ %%
 %% Converting data suitable for Standard BA MATLAB 
-data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose, temp_Pose);
+data = FuncInputBA(camera, state, groundT, feat_ob, measurement, input_value, feat_pos, refined_feat_pos, indices, Pose);
 
 
 
