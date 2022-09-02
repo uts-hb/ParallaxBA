@@ -14,9 +14,10 @@ load(strcat(Data,'.mat'));
 
 %% 4 different initialization methods
 % input_value = 'Ground_truth';              % Initialization 3
-input_value = 'Estimated';               % Initialization 6
 % input_value = 'Initialization_4';       
-% input_value = 'Initialization_5';        
+input_value = 'Initialization_5';    
+% input_value = 'Estimated';               % Initialization 6
+
 
 %% Number of Image (1~500)
 ImageNum =20;
@@ -103,20 +104,19 @@ fprintf('Time Use %d\n\n', BATime);
 
 %% plotting the result of Parallax BA
 Pose = reshape(PVector.Pose,6,[])';
-Pose(:,4:6) = Pose(:,4:6) - Pose(1,4:6);
-GT_P0_ = GT_P0;
-GT_P0_(:,4:6) = GT_P0_(:,4:6) - GT_P0_(1,4:6); 
-
+Pose_ = Pose; 
+Pose_(:,4:6) = Pose_(:,4:6) - Pose_(1,4:6);
 if ImageNum > 9
-    Pose(:,4:6) = (Pose(:,4:6)/Pose(10,6))*GT_P0_(10,6);
+    Pose_(:,4:6) = (Pose_(:,4:6)/Pose(10,6))*GT_P0(10,6);
 else
-    Pose(:,4:6) = (Pose(:,4:6)/Pose(10,6))*GT_P0_(10,6);
+    Pose(:,4:6) = (Pose(:,4:6)/Pose(10,6))*GT_P0(10,6);
 end
+Pose_(:,4:6) = Pose_(:,4:6) + Pose_(1,4:6);
 
 FeaturePos = reshape(PVector.Feature,3,[])';
 
 figure('Name','Parallax BA');
-plot3(GT_P0_(:,4),GT_P0_(:,5),GT_P0_(:,6),'-+r');
+plot3(GT_P0(:,4),GT_P0(:,5),GT_P0(:,6),'-+r');
 axis equal;
 hold on;
 grid on;
@@ -128,7 +128,7 @@ axis equal;
 refined_feat_pos = FuncCalFeatPos(feat_ob, PVector, Feature);
 RMSE_feat_parallax = sqrt(mean(true_feat' - refined_feat_pos').^2);
 ARMSE_feat_parallax = mean(RMSE_feat_parallax(1,:));
-RMSE_pose_parallax = sqrt(mean(GT_P0_-Pose).^2);
+RMSE_pose_parallax = sqrt(mean(GT_P0-Pose).^2);
 ARMSE_rotation_parallax = mean(RMSE_pose_parallax(1,1:3));
 ARMSE_position_parallax =  mean(RMSE_pose_parallax(1,4:6));
 reprojectionErrors_PBA_final= (Errors_par{end}'*Errors_par{end})/(size(Errors_par{end},1)/2);
