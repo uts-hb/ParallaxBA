@@ -15,12 +15,12 @@ load(strcat(Data,'.mat'));
 %% 4 different initialization methods
 % input_value = 'Ground_truth';              % Initialization 3
 % input_value = 'Initialization_4';       
-input_value = 'Initialization_5';    
-% input_value = 'Estimated';               % Initialization 6
+% input_value = 'Initialization_5';    
+input_value = 'Estimated';               % Initialization 6
 
 
 %% Number of Image (1~500)
-ImageNum =100;
+ImageNum =200;
 
 %% Intrinsic matrix for "Starry Night" dataset
 K = textread('calSBA_starry.txt');
@@ -116,22 +116,27 @@ else
     temp_Pose(:,4:6) = (temp_Pose(:,4:6)/temp_Pose(5,6))*temp_GT(5,6);
 end
 
-FeaturePos = reshape(PVector.Feature,3,[])';
+GT_P0(:,4:6)  = temp_GT(:,4:6) + GT_P0(1,4:6);
+Pose(:,4:6) = temp_Pose(:,4:6) + Pose(1,4:6);
 
 figure('Name','Parallax BA');
-plot3(temp_GT(:,4),temp_GT(:,5),temp_GT(:,6),'-+r');
+plot3(GT_P0(:,4),GT_P0(:,5),GT_P0(:,6),'-+r');
 axis equal;
 hold on;
 grid on;
-plot3(temp_Pose(:,4),temp_Pose(:,5),temp_Pose(:,6),'-*g');
+plot3(Pose(:,4),Pose(:,5),Pose(:,6),'-*g');
 axis equal;
 
+PVector.Pose = [];
+for i = 1 : size(temp_Pose,1)
+    PVector.Pose = [PVector.Pose;Pose(i,:)'];
+end 
 
 %% Calculating Reprojection Error and RMSE for PBA
 refined_feat_pos = FuncCalFeatPos(feat_ob, PVector, Feature);
 RMSE_feat_parallax = sqrt(mean(true_feat' - refined_feat_pos').^2);
 ARMSE_feat_parallax = mean(RMSE_feat_parallax(1,:));
-RMSE_pose_parallax = sqrt(mean(temp_GT-temp_Pose).^2);
+RMSE_pose_parallax = sqrt(mean(GT_P0-Pose).^2);
 ARMSE_rotation_parallax = mean(RMSE_pose_parallax(1,1:3));
 ARMSE_position_parallax =  mean(RMSE_pose_parallax(1,4:6));
 reprojectionErrors_PBA_final= (Errors_par{end}'*Errors_par{end})/(size(Errors_par{end},1)/2);
@@ -184,4 +189,3 @@ for i = 1 : size(Errors_st{1},2)
     Errors_standard = [Errors_standard;Errors_st{1}(:,i)];
 end
 reprojectionErrors_SBA_initial = (Errors_standard'*Errors_standard)/(size(Errors_standard,1)/2);
-
