@@ -7,7 +7,9 @@ For the comparison between the two BA methods, the "MALAGA PARKING-6L" [1] and "
 
 To compare two BA with "MALAGA PARKING-6L" and "Starry Night" datasets in MATLAB, **'Malaga_BundleAdjustment.m'** and **'Starry_BundleAdjustment.m'** can be executed, respectively.
 
-In the case of the "Starry Might" dataset, the type of data can be changed between the data with 80 features and 500 features. The type of initial value and the number of images also can be chosen to run MATLAB with different initial inputs. 
+Visual-Inertial SLAM can be executed with **"BAwIMU.m"**, which use "Starry Night" dataset.   
+
+In the case of the "Starry Might" dataset, the type of data can be changed between the data with 40, 80, 100, and 500 features. The type of initial value and the number of images also can be chosen to run MATLAB with different initial inputs. 
    
                 
                                 
