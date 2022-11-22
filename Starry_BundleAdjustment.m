@@ -13,10 +13,10 @@ Data = 'starry_500';
 load(strcat(Data,'.mat'));
 
 %% 4 different initialization methods
-% input_value = 'Ground_truth';              % Initialization 3
-% input_value = 'Initialization_4';       
-% input_value = 'Initialization_5';    
-input_value = 'Estimated';               % Initialization 6
+% input_value = 'Initialization_4';       % Initialization 1
+input_value = 'Estimated';              % Initialization 2
+% input_value = 'Ground_truth';           % Initialization 3
+% input_value = 'Initialization_5';       % Initialization 4
 
 
 %% Number of Image (1~500)
